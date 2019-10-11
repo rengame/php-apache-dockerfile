@@ -20,6 +20,10 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install -j$(nproc) gd \
     && rm -rf /var/lib/apt/lists/*
 
+RUN ln -s ../mods-available/include.load /etc/apache2/mods-enabled/include.load \
+    && ln -s ../mods-available/headers.load /etc/apache2/mods-enabled/headers.load \
+    && ln -s ../mods-available/rewrite.load /etc/apache2/mods-enabled/rewrite.load \
+    && ln -s ../mods-available/vhost_alias.load /etc/apache2/mods-enabled/vhost_alias.load
 
 # INSTALL memcached
 #RUN apt-get update \
@@ -32,3 +36,4 @@ RUN apt-get update && apt-get install -y \
 #    && rm -rf /usr/local/src/php-memcached-3.1.3 /usr/local/src/memcached-v3.1.3.tar.gz
 
 COPY etc /usr/local/etc
+COPY mime.conf /etc/apache2/mods-available/
