@@ -8,7 +8,7 @@ CURRENT_DIR="${PWD##*/}"
 IMAGE_NAME="$CURRENT_DIR"
 TAG="${1}"
 
-REGISTRY="registry.dev.k8s.zt-g.cn"
+REGISTRY="registry.k8s.zt-g.cn"
 
 docker build -t ${REGISTRY}/${IMAGE_NAME}:${TAG} .
 docker tag ${REGISTRY}/${IMAGE_NAME}:${TAG} ${REGISTRY}/${IMAGE_NAME}:latest
